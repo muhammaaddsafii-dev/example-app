@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::GET('/', [FinanceController::class, 'index']);
+Route::GET('/finance/create', [FinanceController::class, 'create']);
+Route::POST('/finance/store', [FinanceController::class, 'store']);
+Route::GET('/finance/{finance:slug}/edit', [FinanceController::class, 'edit']);
+Route::patch('/finance/{finance:slug}/edit', [FinanceController::class, 'update']);
+Route::delete('/finance/{finance:slug}/delete', [FinanceController::class, 'destroy']);
